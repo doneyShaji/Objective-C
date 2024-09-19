@@ -9,8 +9,10 @@
 
 @implementation ViewController
 
+NSString *test = @"HELLO";
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Array with multiple images
     self.imageArray = @[
         [UIImage imageNamed: @"DiceOne"],
@@ -28,6 +30,9 @@
     int randomNumber1 = arc4random_uniform((uint32_t)self.imageArray.count);
     int randomNumber2 = arc4random_uniform((uint32_t)self.imageArray.count);
     
+    if ([test  isEqual: @"HELLO"]) {
+        <#statements#>
+    }
     [self rollFunctionality:randomNumber1 secondNumber:randomNumber2];
 }
 
