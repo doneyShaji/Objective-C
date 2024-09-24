@@ -12,7 +12,7 @@
 - (void)fetchDataFromAPI:(nonnull NSString *)cityname completion:(void (^)(WeatherModel *weatherData))completion {
     
     
-    NSString *apiKey = @"1134f64405403076b6ca565b42bd1c85";
+    NSString *apiKey = @"";
     NSString *urlString = [NSString stringWithFormat:@"https://api.openweathermap.org/data/2.5/weather?q=%@&appid=%@&units=metric", cityname, apiKey];
     
     
