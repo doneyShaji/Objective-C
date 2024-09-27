@@ -29,16 +29,25 @@
     self.location = self.searchTextField.text;
     NSLog(@"%@", self.location);
     
-    self.apiService = [[APIService alloc]init];
-    [self.apiService fetchDataFromAPI:self.location completion:^(WeatherModel * _Nonnull weatherData) {
-        NSLog(@"Fetched temperature: %@", weatherData.temperature);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.temperatureText.text = [NSString stringWithFormat:@"%.2f", weatherData.temperature.floatValue];
-            self.countryText.text = [NSString stringWithFormat:@"%@", weatherData.cityName];
-            NSString *icon = [self getConditionName:weatherData.weatherID];
-            self.iconImage.image = [UIImage systemImageNamed:icon];
-            
-        });
+//    self.apiService = [[APIService alloc]init];
+//    [self.apiService fetchDataFromAPI:self.location completion:^(WeatherModel * _Nonnull weatherData) {
+//        NSLog(@"Fetched temperature: %@", weatherData.temperature);
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            self.temperatureText.text = [NSString stringWithFormat:@"%.2f", weatherData.temperature.floatValue];
+//            self.countryText.text = [NSString stringWithFormat:@"%@", weatherData.cityName];
+//            NSString *icon = [self getConditionName:weatherData.weatherID];
+//            self.iconImage.image = [UIImage systemImageNamed:icon];
+//            
+//        });
+//    }];
+    WeatherService *weatherService = [[WeatherService alloc] init];
+    [weatherService fetchWeatherForCity:self.location completion:^(NSDictionary *weatherData, NSError * error) {
+        if (error) {
+            NSLog(@"Error: %@", error.localizedDescription);
+                    } else {
+                        NSLog(@"Weather Data: %@", weatherData);
+                        // Handle the weather data as needed
+                    }
     }];
 }
 
